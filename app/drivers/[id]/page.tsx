@@ -11,7 +11,7 @@ const SingleDriverPage = ({ params }: { params: { id: string } }) => {
   return (
     <main className="flex flex-1 flex-col justify-center items-center gap-20">
       <h2 className="h2-bold text-center">{data?.name}</h2>
-      <TableSupplies supplies={data?.supplies} />
+      <TableSupplies supplies={data?.supplies} driverName={data?.name} />
       <Button
         className="p-3 bg-blue-300 text-white hover:bg-blue-200 rounded-md"
         onClick={() => router.back()}

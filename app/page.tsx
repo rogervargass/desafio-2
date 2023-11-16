@@ -5,9 +5,11 @@ async function Home() {
   const drivers = await fetchDrivers();
   const supplies = await fetchSupplies();
   return (
-    <main className="flex justify-center flex-1 gap-24">
-      <TableDrivers drivers={drivers} />
-      <TableSupplies supplies={supplies} />
+    <main className="flex justify-center items-center flex-1">
+      <section className="flex items-start gap-24">
+        <TableDrivers drivers={drivers} />
+        <TableSupplies supplies={supplies} />
+      </section>
     </main>
   );
 }

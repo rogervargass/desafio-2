@@ -3,9 +3,10 @@ import { formatDate, formatFuel, formatMoney } from "@/utils/utils";
 
 type Props = {
   supplies: SupplyType[];
+  driverName?: string;
 };
 
-const TableSupplies = ({ supplies }: Props) => {
+const TableSupplies = ({ supplies, driverName }: Props) => {
   return (
     <section className="flex flex-col justify-center">
       {supplies ? (
@@ -28,7 +29,9 @@ const TableSupplies = ({ supplies }: Props) => {
                     className="text-blue-300 text-lg border-gray-200 border-b-2"
                     key={supply.id}
                   >
-                    <td className="p-3">{supply.driver?.name}</td>
+                    <td className="p-3">
+                      {driverName ? driverName : supply.driver?.name}
+                    </td>
                     <td className="p-3 text-center">
                       {formatFuel(supply.fuel)}
                     </td>
