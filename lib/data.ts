@@ -1,6 +1,7 @@
 import api from "@/lib/axios";
 import { DriverType } from "@/types/driver";
 import { maskCpf } from "@/utils/utils";
+import { AxiosError } from "axios";
 
 export async function fetchDrivers() {
   try {
@@ -29,12 +30,12 @@ export async function addNewDriver(formData: FormData) {
   const cpf = formData.get("cpf");
 
   try {
-    await api.post("/driver", {
+    return await api.post("/driver", {
       name: name,
       document: cpf,
     });
   } catch (error) {
-    console.log(error);
+    return error;
   }
 }
 

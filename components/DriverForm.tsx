@@ -1,14 +1,25 @@
 "use client";
 
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import Input from "./form/Input";
 import Button from "./form/Button";
 import { addNewDriver } from "@/lib/data";
+import { useRouter } from "next/navigation";
 
 const DriverForm = () => {
   const formRef = useRef<HTMLFormElement>(null);
+  const inputNameRef = useRef<HTMLInputElement>(null);
+  const inputDocumentRef = useRef<HTMLInputElement>(null);
+
+  const router = useRouter();
+
+  const handleSubmit = async (formData: FormData) => {
+    const response = await addNewDriver(formData);
+    if (response !== null) router.push("/");
+  };
+
   return (
-    <form action={addNewDriver} ref={formRef} className="flex gap-8 items-end">
+    <form ref={formRef} action={handleSubmit} className="flex gap-8 items-end">
       <Input
         type="text"
         name="name"

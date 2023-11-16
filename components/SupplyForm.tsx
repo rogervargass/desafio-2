@@ -5,6 +5,7 @@ import { useRef } from "react";
 import Input from "./form/Input";
 import Select from "./form/Select";
 import Button from "./form/Button";
+import { useRouter } from "next/navigation";
 
 const SELECT_OPTIONS = [
   {
@@ -23,10 +24,16 @@ const SELECT_OPTIONS = [
 
 const SupplyForm = () => {
   const formRef = useRef<HTMLFormElement>(null);
+  const router = useRouter();
+
+  const handleSubmit = async (formData: FormData) => {
+    const response = await addNewSupply(formData);
+    if (response !== null) router.push("/");
+  };
   return (
     <form
       ref={formRef}
-      action={addNewSupply}
+      action={handleSubmit}
       className="flex w-full max-w-5xl gap-8 justify-center items-center"
     >
       <Input

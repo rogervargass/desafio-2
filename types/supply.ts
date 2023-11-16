@@ -8,5 +8,6 @@ export type SupplyType = {
   liters: number;
   createdAt: string;
   totalPrice: string;
-  driver?: DriverType;
+  driverName?: string;
+  driverId?: string;
 };

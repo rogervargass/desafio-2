@@ -2,14 +2,15 @@ import { SupplyType } from "@/types/supply";
 import { formatDate, formatFuel, formatMoney } from "@/utils/utils";
 
 type Props = {
-  supplies: SupplyType[];
+  supplies?: SupplyType[];
   driverName?: string;
 };
 
 const TableSupplies = ({ supplies, driverName }: Props) => {
+  if (!supplies) return;
   return (
     <section className="flex flex-col justify-center">
-      {supplies ? (
+      {supplies.length > 0 ? (
         <>
           <h2 className="h2-bold text-center">Últimos abastecimentos</h2>
           <table className="bg-gray-100 border-2 border-gray-200">
@@ -30,7 +31,7 @@ const TableSupplies = ({ supplies, driverName }: Props) => {
                     key={supply.id}
                   >
                     <td className="p-3">
-                      {driverName ? driverName : supply.driver?.name}
+                      {driverName ? driverName : supply.driverName}
                     </td>
                     <td className="p-3 text-center">
                       {formatFuel(supply.fuel)}

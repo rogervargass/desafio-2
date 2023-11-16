@@ -5,15 +5,16 @@ import { useRouter } from "next/navigation";
 import { FiChevronRight } from "react-icons/fi";
 
 type Props = {
-  drivers: DriverType[];
+  drivers?: DriverType[];
 };
 
 const TableDrivers = ({ drivers }: Props) => {
   const router = useRouter();
 
+  if (!drivers) return;
   return (
     <section className="flex flex-col justify-center">
-      {drivers ? (
+      {drivers.length > 0 ? (
         <>
           <h2 className="h2-bold text-center">Motoristas</h2>
           <table className="bg-gray-100 border-2 border-gray-200">
