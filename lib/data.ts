@@ -7,7 +7,7 @@ export async function fetchDrivers() {
   try {
     const { data } = await api.get("/driver");
     if (data.length > 0) {
-      const drivers: DriverType[] = data.map((driver) => {
+      const drivers: DriverType[] = data.map((driver: any) => {
         return {
           id: driver.id,
           name: driver.name,
