@@ -2,6 +2,24 @@
 
 import { addNewSupply } from "@/lib/data";
 import { useRef } from "react";
+import Input from "./form/Input";
+import Select from "./form/Select";
+import Button from "./form/Button";
+
+const SELECT_OPTIONS = [
+  {
+    label: "Gasolina",
+    value: "GASOLINE",
+  },
+  {
+    label: "Diesel",
+    value: "DIESEL",
+  },
+  {
+    label: "Etanol",
+    value: "ETHANOL",
+  },
+];
 
 const SupplyForm = () => {
   const formRef = useRef<HTMLFormElement>(null);
@@ -9,35 +27,29 @@ const SupplyForm = () => {
     <form
       ref={formRef}
       action={addNewSupply}
-      className="flex gap-8 items-center"
+      className="flex w-full max-w-5xl gap-8 justify-center items-center"
     >
-      <input
+      <Input
         type="text"
         name="cpf"
-        className="bg-gray-200 p-2 rounded-md"
+        label="CPF do motorista"
         placeholder="Digite o cpf"
       />
-      <select
+      <Select
+        options={SELECT_OPTIONS}
+        label="Combustível"
         name="fuel"
         defaultValue={"DEFAULT"}
-        className="bg-gray-200 p-2 rounded-md"
-      >
-        <option disabled value="DEFAULT">
-          Escolha o combustível...
-        </option>
-        <option value="GASOLINE">Gasolina</option>
-        <option value="DIESEL">Diesel</option>
-        <option value="ETHANOL">Etanol</option>
-      </select>
-      <input
+      />
+      <Input
         type="number"
         name="liters"
-        className="bg-gray-200 p-2 rounded-md"
+        label="Litros de combustível"
         placeholder="Digite quantos litros"
       />
-      <button className="p-3 bg-blue-300 text-white hover:bg-blue-200 rounded-md">
+      <Button className="p-3 self-end bg-blue-300 text-white hover:bg-blue-200 rounded-md">
         Cadastrar abastecimento
-      </button>
+      </Button>
     </form>
   );
 };

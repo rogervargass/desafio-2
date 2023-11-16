@@ -6,7 +6,7 @@ interface Props extends InputHTMLAttributes<HTMLInputElement> {
 
 const Input: FC<Props> = ({ label, className, ...props }) => {
   return (
-    <div className="flex flex-col">
+    <div className="flex flex-1 flex-col">
       {label && <label>{label}</label>}
       <input className={`bg-gray-200 p-2 rounded-md ${className}`} {...props} />
     </div>
